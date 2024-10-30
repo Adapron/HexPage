@@ -124,8 +124,11 @@
         <!-- Top Navigation Bar -->
         
 
-        <div class="game-title content-section " style="width: 800px; background-color: #00000000; height: 50%; box-shadow: none;">
-            <img src="logo.png" width="800px">
+        <div class="game-title content-section " style="width: min(800px, 100%); background-color: #00000000; height: auto; box-shadow: none; top: 20%">
+            <img src="logo.png" style="width: min(800px, 100%);
+            height: auto; /* This maintains the image's aspect ratio */
+            display: block; /* Prevents any unwanted space below the image */
+            margin: 0 auto; /* Centers the image if it's smaller than 100% */">
         </div>
     
         <!-- Content Section with YouTube Video -->
