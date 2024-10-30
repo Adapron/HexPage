@@ -29,10 +29,26 @@
                 height: 100%;
                 z-index: 0; /* Ensure canvas is behind everything */
             }
+
+            :root {
+                --y-position: 0px;
+            }
+
+            /* Define keyframes using the variable */
+            @keyframes moveDown {
+                0% {
+                    transform: translateY(var(--y-start)); /* Use a start position variable */
+                }
+                100% {
+                    transform: translateY(var(--y-position)); /* Use an end position variable */
+                }
+            }
     
             #backgroundCanvas {
                 width: 100%;
                 height: 200%;
+                
+                
             }
     
             /* Top navigation bar */
@@ -117,7 +133,7 @@
         </div>
         <!-- Main canvas background -->
         <div class="canvas-container">
-            <canvas id="backgroundCanvas"></canvas>
+            <canvas id="backgroundCanvas" class = "canvas-itself"></canvas>
             
         </div>
     
@@ -381,13 +397,43 @@
 
         //setInterval(drawBackground, 1);
 
+        function moveElement(y) {
+            // Set the start position to the current y position
+            canvas.style.setProperty('--y-start', getComputedStyle(document.documentElement).getPropertyValue('--y-position'));
+
+            // Set the end position
+            canvas.style.setProperty('--y-position', `${y}px`);
+
+            // Trigger reflow to restart animation
+            canvas.style.animation = 'none';
+            requestAnimationFrame(() => {
+                canvas.style.animation = '';
+            });
+        }
+
+        let lastScrollY = window.scrollY;
+        const scrollSpeed = -0.1; // Adjust this to control speed
+
+        function smoothScroll() {
+            // Lerp (linear interpolation) for smoother transition
+            lastScrollY += (window.scrollY - lastScrollY) * 0.5;
+            
+            const offset = lastScrollY * scrollSpeed;
+            canvas.style.transform = `translateY(${offset}px)`;
+
+            // Continue the animation loop
+            requestAnimationFrame(smoothScroll);
+        }
+
+        smoothScroll();
+
 
         // Scroll effect for canvas
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const offset = scrollY * -0.1; // Adjust to control scroll speed
-            canvas.style.transform = `translateY(${offset}px)`;
-            drawBackground();
+            //moveElement(offset)
+            //canvas.style.transform = `translateY(${offset}px)`;
 
             
         });
