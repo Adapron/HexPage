@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hexen</title>
+        <title>Hexa</title>
         <style>
             /* Reset and base styles */
             * { 
@@ -23,7 +23,7 @@
             /* Main canvas background */
             .canvas-container {
                 position: fixed; /* Fix position to cover the entire viewport */
-                top: -100%; /* Adjusted to position title and logo */
+                top: -50%; /* Adjusted to position title and logo */
                 left: 0;
                 width: 100%;
                 height: 100%;
@@ -385,7 +385,7 @@
         // Scroll effect for canvas
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const offset = scrollY * 0.5; // Adjust to control scroll speed
+            const offset = scrollY * -0.1; // Adjust to control scroll speed
             canvas.style.transform = `translateY(${offset}px)`;
             drawBackground();
 
