@@ -71,6 +71,26 @@
                 margin: 0 10px;
                 font-size: 1.2em;
             }
+            .image-container {
+                position: relative;
+                display: inline-block;
+            }
+            .glow {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                filter: blur(50px); /* Adjust to control glow intensity */
+                opacity: 0.8;       /* Adjust to control glow opacity */
+                transform: scale(1); /* Slightly enlarge for the glow effect */
+                z-index: -1;        /* Places it behind the main image */
+            }
+
+            .main-image {
+            position: relative;
+            z-index: 1;         /* Keeps it in front of the glow image */
+            }
     
             /* Game title overlay */
             .game-title {
@@ -121,6 +141,15 @@
                 padding: 40px 0;
                 color: #ffffff;
             }
+            .logoimg{
+                /* Ensures the shadow is applied to the transparent areas as well */
+                background-color: transparent;
+
+                /* Glow effect */
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), /* glow color */
+                            0 0 40px rgba(0, 255, 255, 0.6), /* softer glow */
+                            0 0 60px rgba(0, 255, 255, 0.4); /* faint outer glow */
+            }
         </style>
     </head>
     <body>
@@ -141,10 +170,17 @@
         
 
         <div class="game-title content-section " style="width: min(800px, 100%); background-color: #00000000; height: auto; box-shadow: none; top: 20%">
-            <img src="logo.png" style="width: min(800px, 100%);
+
+            <div class="image-container">
+                <img src="logo.png" alt="Image" class="glow">
+            <img src="logo.png" class="main-image" style="width: min(800px, 100%);
             height: auto; /* This maintains the image's aspect ratio */
             display: block; /* Prevents any unwanted space below the image */
-            margin: 0 auto; /* Centers the image if it's smaller than 100% */">
+            margin: 0 auto; /* Centers the image if it's smaller than 100% */
+            
+            ">
+                
+            </div>
         </div>
     
         <!-- Content Section with YouTube Video -->
