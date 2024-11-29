@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masked Image with Mouse Interaction</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #222;
+    }
+    canvas {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    // Select the canvas and set up the context
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    
+    // Set canvas to full window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load the background image
+    const image = new Image();
+    image.src = "screenshot1.png"; // Replace with the path to your image
+
+    // Parameters for the circular mask
+    const maskRadius = 300;
+
+    // Update the canvas each time the mouse moves
+    canvas.addEventListener("mousemove", (event) => {
+      // Clear the canvas for redraw
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the image as the background
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      // Set global composite operation to mask the image
+      ctx.globalCompositeOperation = "destination-in";
+      
+      // Draw a radial gradient for the circular mask
+      const gradient = ctx.createRadialGradient(
+        event.clientX, event.clientY, 0,
+        event.clientX, event.clientY, maskRadius
+      );
+      gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      // Fill the gradient as the mask
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(event.clientX, event.clientY, maskRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Reset the global composite operation
+      ctx.globalCompositeOperation = "source-over";
+    });
+
+    // Ensure image loads before attempting to draw
+    image.onload = () => {
+      // Initial draw of the image
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
+
+    // Adjust canvas size on window resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    });
+  </script>
+</body>
+</html>

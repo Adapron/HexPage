@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hexa</title>
+        <style>
+            /* Reset and base styles */
+            * { 
+                margin: 0; 
+                padding: 0; 
+                box-sizing: border-box; 
+            }
+    
+            body { 
+                font-family: Arial, sans-serif; 
+                color: #000000; 
+                overflow-x: hidden; 
+                height: 100vh; /* Ensure the body covers the full height */
+                background: linear-gradient(to right, rgb(45, 41, 54), rgb(20, 20, 22)); /* Background gradient */
+            }
+    
+            /* Main canvas background */
+            .canvas-container {
+                position: fixed; /* Fix position to cover the entire viewport */
+                top: -50%; /* Adjusted to position title and logo */
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0; /* Ensure canvas is behind everything */
+            }
+
+            :root {
+                --y-position: 0px;
+            }
+
+            /* Define keyframes using the variable */
+            @keyframes moveDown {
+                0% {
+                    transform: translateY(var(--y-start)); /* Use a start position variable */
+                }
+                100% {
+                    transform: translateY(var(--y-position)); /* Use an end position variable */
+                }
+            }
+    
+            #backgroundCanvas {
+                width: 100%;
+                height: 200%;
+                
+                
+            }
+    
+            /* Top navigation bar */
+            .top-bar {
+                background: rgba(51, 51, 51, 0.5); /* Semi-transparent background */
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top:0;;
+                padding: 10px 0;
+                position: fixed;
+                width: 100%;
+                z-index: 1000; /* Ensure the top bar is above all content */
+            }
+    
+            .top-bar a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 10px;
+                font-size: 1.2em;
+            }
+            .image-container {
+                position: relative;
+                display: inline-block;
+            }
+            .glow {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                filter: blur(50px); /* Adjust to control glow intensity */
+                opacity: 0.8;       /* Adjust to control glow opacity */
+                transform: scale(1); /* Slightly enlarge for the glow effect */
+                z-index: -1;        /* Places it behind the main image */
+            }
+
+            .main-image {
+            position: relative;
+            z-index: 1;         /* Keeps it in front of the glow image */
+            }
+    
+            /* Game title overlay */
+            .game-title {
+                position: absolute;
+                height: 100vh;
+                top: 30%; /* Adjusted to position title and logo */
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+                text-align: center; /* Center text */
+                z-index: 1; /* Set above canvas */
+            }
+    
+            /* Game title text */
+            .game-title h1 {
+                font-size: 3em; /* Title font size */
+                margin-bottom: 10px; /* Space between title and logo */
+            }
+    
+            /* Content sections */
+            .content-section {
+                padding: 50px 20px;
+                text-align: center;
+                background: rgba(85, 85, 85, 0.5); /* Semi-transparent background */
+                position: relative; /* Ensure positioning for z-index */
+                z-index: 2; /* Ensure it's above the canvas */
+                margin-top: 80px; /* Add top margin to avoid overlap with the top bar */
+                margin-bottom: 20px; /* Add bottom margin for spacing */
+                box-shadow: 0 0 15px rgba(85, 85, 85, 1); /* Glowing effect */
+            }
+    
+            .video-container, .screenshots {
+                max-width: 800px;
+                margin: 20px auto; /* Center the containers and add margin */
+            }
+    
+            .screenshots img {
+                width: 30%;
+                margin: 10px;
+                border-radius: 5px;
+                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            }
+    
+            /* Footer / Coming Soon */
+            .coming-soon {
+                font-size: 2em;
+                padding: 40px 0;
+                color: #ffffff;
+            }
+            .logoimg{
+                /* Ensures the shadow is applied to the transparent areas as well */
+                background-color: transparent;
+
+                /* Glow effect */
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), /* glow color */
+                            0 0 40px rgba(0, 255, 255, 0.6), /* softer glow */
+                            0 0 60px rgba(0, 255, 255, 0.4); /* faint outer glow */
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div class="top-bar">
+            <a href="https://youtube.com">YouTube</a>
+            <a href="https://twitter.com">Twitter</a>
+            <a href="https://instagram.com">Instagram</a>
+            <a href="https://itch.io">Itch.io</a>
+        </div>
+        <!-- Main canvas background -->
+        <div class="canvas-container">
+            <canvas id="backgroundCanvas" class = "canvas-itself"></canvas>
+            
+        </div>
+    
+        <!-- Top Navigation Bar -->
+        
+
+        <div class="game-title content-section " style="width: min(800px, 100%); background-color: #00000000; height: auto; box-shadow: none; top: 20%">
+
+            <div class="image-container">
+                <img src="logo.png" alt="Image" class="glow">
+            <img src="logo.png" class="main-image" style="width: min(800px, 100%);
+            height: auto; /* This maintains the image's aspect ratio */
+            display: block; /* Prevents any unwanted space below the image */
+            margin: 0 auto; /* Centers the image if it's smaller than 100% */
+            
+            ">
+                
+            </div>
+        </div>
+    
+        <!-- Content Section with YouTube Video -->
+         <div class="content-section" style="width: 100%; ">
+        <div class="content-section video-container" style="width: 100%; border-radius: 10px; ">
+            <h2>Game Trailer</h2>
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/VIDEO_ID" 
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>
+    
+        <!-- Screenshots Section -->
+        <div class="content-section screenshots" style="border-radius: 10px; ">
+            <h2>Screenshots</h2>
+            <img src="screenshot1.png" alt="Screenshot 1">
+            <img src="screenshot2.png" alt="Screenshot 2">
+            <img src="screenshot3.png" alt="Screenshot 3">
+        </div>
+    </div>
+    
+        <!-- Coming Soon Section -->
+        <div class="content-section coming-soon">
+            <p>Coming Soon</p>
+        </div>
+    <script>
+        // Initialize Canvas for background effect
+        const canvas = document.getElementById('backgroundCanvas');
+        const sideLength = 50;
+        const cellWidth = sideLength * Math.sqrt(3)
+        const cellHeight = sideLength * 2
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth*1;
+        canvas.height = window.innerHeight*2;
+        
+        const virtualBG = document.createElement("canvas");
+        const virtualCTX = virtualBG.getContext('2d');
+        
+        virtualBG.width = canvas.width;
+        virtualBG.height = canvas.height;
+
+        const virtualBG2 = document.createElement("canvas");
+        const virtualCTX2 = virtualBG.getContext('2d');
+        
+        virtualBG2.width = canvas.width;
+        virtualBG2.height = canvas.height;
+
+        function drawHexagonOutline(ctx, points, lightness) {
+            if (points.length !== 6) {
+                console.error("Hexagon requires exactly six points.");
+                return;
+            }
+
+            lightness = Math.min(lightness, 255);
+            lightness = Math.max(lightness, 25);
+            
+            // Loop through each edge of the hexagon
+            for (let i = 0; i < points.length; i++) {
+                const start = points[i];
+                const end = points[(i + 1) % points.length];  // Wrap around to the first point
+                
+                // Calculate the midpoint for gradient placement
+                const midX = (start.x + end.x) / 2;
+                const midY = (start.y + end.y) / 2;
+
+                // Create a linear gradient from start to end
+                const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
+                
+                // Define the colors for the gradient
+                // Adjust these color values as needed for the desired effect
+
+                gradient.addColorStop(0, `rgba(${lightness},${lightness},${lightness}, 255)`);  // Starting color (near the vertex)
+                gradient.addColorStop(0.5, "rgba(20, 0, 0, 0)");  // Midpoint color (darker)
+                gradient.addColorStop(0.25, "rgba(20, 0, 0, 0)");  // Midpoint color (darker)
+                //gradient.addColorStop(1, "rgba(255, 0, 0, 1)");  // Ending color (near the vertex)
+
+                // Set the stroke style to the gradient
+                ctx.strokeStyle = gradient;
+
+                // Begin path for the edge
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke(); // Draw the edge
+                
+            }
+
+        }
+
+        function fillHexagon(ctx, points) {
+            if (points.length !== 6) {
+                console.error("Hexagon requires exactly six points.");
+                return;
+            }
+
+            // Create a path for the hexagon
+            ctx.moveTo(points[0].x, points[0].y);  // Move to the first point
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);  // Move to the first point
+
+            // Draw lines to each subsequent point
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(points[i].x, points[i].y);
+            }
+
+            ctx.closePath();  // Connect the last point to the first
+
+            // Create a linear gradient for filling
+            const gradient = ctx.createLinearGradient(
+                points[0].x, points[0].y, 
+                points[3].x, points[3].y // Gradient direction can be adjusted
+            );
+
+            // Define the colors for the gradient
+            gradient.addColorStop(0, "rgba(255, 255, 255, 0.1)");  // Light blue
+            gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.1)");  // Dark blue
+            gradient.addColorStop(1, "rgba(255, 255, 255, 0.1)");  // Dark blue
+
+            // Set the fill style to the gradient
+            ctx.fillStyle = gradient;
+
+            // Fill the hexagon
+            ctx.fill();
+        }
+
+        
+        
+
+        function GridToWorld(x, y){
+            var columnOffset = y%2==0? 0 : 0.5;
+            var finalX = (x + columnOffset) * cellWidth;
+            var finalY = y * cellHeight*0.75;
+            return {x: finalY, y: finalX};
+        }
+
+        function WorldToGrid(mpos)
+        {
+            const pos = {x: mpos.x, y: mpos.y};
+            var halfDifference = (cellHeight - cellWidth) / 2;
+            pos.x -= halfDifference;
+
+            var x = pos.x / cellWidth;
+            var y = pos.y / (cellHeight * 0.75);
+
+            var row = Math.floor(y);
+
+            if (Math.abs(row) % 2 == 1)
+            {
+                x -= 0.5;
+            }
+
+            var col = Math.floor(x);
+
+            var decimalPartY = (y - Math.floor(y));
+
+            if (decimalPartY < 0.3333)
+            {
+                var decimalPartX = (x - Math.floor(x));
+                var adjustedY = decimalPartY / (2 / 3);
+                var adjustedX = decimalPartX - 0.5;
+
+                if (adjustedY < Math.abs(adjustedX))
+                {
+                    if (Math.abs(row) % 2 == 1)
+                    {
+                        col++;
+                    }
+
+                    row--;
+
+                    if (adjustedX < 0)
+                    {
+                        col--;
+                    }
+                }
+            }
+
+            return {x: col, y: row};
+        }
+
+        function distanceFromMouse(x, y){
+            return (Math.pow(x - mousePos.x, 2) + Math.pow(y - mousePos.y, 2));
+        }
+
+        // Simple background animation
+
+        function prepareBG(){
+            virtualCTX.fillStyle = "rgba(0, 0, 0, 1)"
+            virtualCTX.fillRect(0, 0, virtualBG.width, virtualBG.height);
+            for (let y = 0; y < canvas.height/cellHeight + 50; y++) {
+                for (let x = 0; x < canvas.width/cellWidth + 10; x++) {
+
+                    polygonCenter = GridToWorld(y, x)
+                    
+                    const polygonPoints = Array.from({ length: 6 }, (_, i) => ({
+                        y: polygonCenter.x + sideLength * Math.cos((Math.PI / 3) * i),
+                        x: polygonCenter.y + sideLength * Math.sin((Math.PI / 3) * i)
+                    }));
+
+                    
+                    drawHexagonOutline(virtualCTX, polygonPoints, 255);
+
+                }
+            }
+        }
+
+        function mask(posX, posY) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            
+    // Draw the image as the background
+    ctx.drawImage(virtualBG, 0, 0);
+        const maskRadius = canvas.width*2;
+
+        // Create a radial gradient for the circular mask
+        const gradient = ctx.createRadialGradient(
+            posX, posY, 0,
+            posX, posY, maskRadius
+        );
+
+        // Define color stops for partial visibility outside the mask
+        gradient.addColorStop(1, "rgba(0, 0, 0, 0.8)"); // 50% visible
+        gradient.addColorStop(0.1, "rgba(0, 0, 0, 0.8)"); // 50% visible
+        gradient.addColorStop(0, "rgba(0, 0, 0, 0)");   // Fully opaque in the center
+
+        // Draw the gradient on a temporary layer
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = ctx.canvas.width;
+        tempCanvas.height = ctx.canvas.height;
+        const tempCtx = tempCanvas.getContext("2d");
+
+        tempCtx.fillStyle = gradient;
+        tempCtx.beginPath();
+        tempCtx.arc(posX, posY, maskRadius, 0, Math.PI * 2);
+        tempCtx.fill();
+
+        // Set the composite operation to blend the mask
+        ctx.globalAlpha = 1; // 50% visibility outside the mask
+        ctx.drawImage(tempCanvas, 0, 0);
+
+        // Reset the global alpha
+        ctx.globalAlpha = 1;
+    }
+
+    function calculateOverlay(cursor){
+
+        virtualCTX2.save();
+        
+        virtualCTX2.globalCompositeOperation = "multiply";
+
+
+        virtualCTX2.fillStyle = "rgba(255, 255, 255, 0)";
+        virtualCTX2.fillRect(0, 0, virtualBG2.width, virtualBG2.height);
+        virtualCTX2.restore();
+
+        
+
+
+        polygonCenter = GridToWorld(cursor.x, cursor.y)
+                    
+        const polygonPoints = Array.from({ length: 6 }, (_, i) => ({
+            y: polygonCenter.x + sideLength * Math.cos((Math.PI / 3) * i),
+            x: polygonCenter.y + sideLength * Math.sin((Math.PI / 3) * i)
+        }));
+
+
+        
+        fillHexagon(virtualCTX2, polygonPoints);
+
+    }
+
+
+
+
+        function drawBackground(mouseX, mouseY) {
+
+
+            
+
+            var cursor = WorldToGrid({x: mouseX+50, y: mouseY+50})
+            calculateOverlay(cursor)
+            ctx.drawImage(virtualBG2, 0, 0)
+
+            
+            mask(mouseX, mouseY);
+
+
+
+
+
+            
+
+            
+            
+        }
+
+        var mousePos = {x:0,y:0}
+
+        window.addEventListener("mousemove", (event) => {
+            const rect = canvas.getBoundingClientRect();
+
+            // Calculate the mouse position relative to the canvas
+            const mouseX = (event.clientX - rect.left) * (canvas.width / rect.width);
+            const mouseY = (event.clientY - rect.top) * (canvas.height / rect.height);
+
+            
+
+            drawBackground(mouseX, mouseY);
+            
+
+            //if (isInsideCanvas) {
+            //    console.log("Mouse position:", mouseX, mouseY);
+            //    // Update game state with mouse position as needed
+            //}
+        });
+
+
+
+        function moveElement(y) {
+            // Set the start position to the current y position
+            canvas.style.setProperty('--y-start', getComputedStyle(document.documentElement).getPropertyValue('--y-position'));
+
+            // Set the end position
+            canvas.style.setProperty('--y-position', `${y}px`);
+
+            // Trigger reflow to restart animation
+            canvas.style.animation = 'none';
+            requestAnimationFrame(() => {
+                canvas.style.animation = '';
+            });
+        }
+
+        let lastScrollY = window.scrollY;
+        const scrollSpeed = -0.1; // Adjust this to control speed
+
+        function smoothScroll() {
+            // Lerp (linear interpolation) for smoother transition
+            lastScrollY += (window.scrollY - lastScrollY) * 0.5;
+            
+            const offset = lastScrollY * scrollSpeed;
+            canvas.style.transform = `translateY(${offset}px)`;
+
+            // Continue the animation loop
+            requestAnimationFrame(smoothScroll);
+        }
+
+        smoothScroll();
+
+
+        // Scroll effect for canvas
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const offset = scrollY * -0.1; // Adjust to control scroll speed
+            //moveElement(offset)
+            //canvas.style.transform = `translateY(${offset}px)`;
+
+            
+        });
+
+        window.addEventListener('resize', () => {
+            ctx.fillStyle = "rgba(0, 0, 0, 0)";
+            canvas.width = window.innerWidth*1;
+            canvas.height = window.innerHeight*2;
+        
+            
+            virtualBG.width = canvas.width;
+            virtualBG.height = canvas.height;
+            virtualBG2.width = canvas.width;
+            virtualBG2.height = canvas.height;
+            prepareBG();
+            drawBackground(canvas.width/2, canvas.height/2)
+        });
+        prepareBG()
+        drawBackground(canvas.width/2, canvas.height/2)
+    </script>
+
+</body>
+</html>
