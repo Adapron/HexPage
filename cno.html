@@ -293,7 +293,161 @@
       { text: "sec 8", points: 80 }
     ];
 
-    const data = { "Který z učitelů by mohl jít do politiky?": { "Zágora": 9.6, "Trunky": 7.2, "Krpec": 6, "Bláhová": 2.4, "Šostok": 2.4, "Branný": 2.4 }, "Kdo z učitelů by mohl být celebritou?": { "Bláhová": 12.27273, "Branný": 8.18182, "Řeháčková": 5.45455, "Zágora": 4.09091 }, "V jakém předmětu se vždycky všichni modlí, aby se nezkoušelo?": { "Biola": 12.85714, "ZSV": 7.5, "Fyzika": 7.5, "Anlgičtina": 2.1428599999999998 }, "Jakou činnost dělají studenti o přestávce nejraději?": { "Jídlo": 9.13043, "Řvou": 5.21739, "Mobil": 5.21739, "Chitchat": 3.91304, "Záchod": 3.91304, "Učí se": 2.6087 }, "Kdyby učitele hráli ve filmu, kdo by byl záporák?": { "Koch": 9.13043, "Šelong": 7.82609, "Zágora": 5.21739, "Trunkát": 2.6087, "Slawinská": 2.6087, "Krpec": 2.6087 }, "Co si student nesmí vzít do školy?": { "Zbraň": 11.53846, "Tepláky": 8.07692, "Drogy": 6.92308, "Komicky velkou věc": 3.46154 }, "Jakou výmluvu použije student, když přijde pozdě do hodiny?": { "Lékař": 15, "Záchod": 6.42857, "Dopravní situace": 4.28571, "Zdržel mě učitel": 2.1428599999999998, "Zaspal": 2.1428599999999998 }, "Kterého učitele byste si vybrali kdybyste měli ztroskotat na opuštěném ostrově?": { "Krpec": 9.47368, "Šostok": 7.8947400000000005, "Zrubková": 4.73684, "Šelong": 4.73684, "Zágora": 3.15789 }, "Jak řeší studenti situaci, když je večer před testem a nic neumí? ": { "Spí": 11.53846, "Nespí": 8.07692, "Nejdou do školy": 5.76923, "Zítra ráno je taky den": 2.30769, "Tahák": 2.30769 }, "Jaký je váš nejoblíbenější žánr v kinematografii?": { "Fantasy": 7.8947400000000005, "Action": 6.31579, "Komedie": 4.73684, "Sci fi": 4.73684, "Documentary": 3.15789, "Horror": 3.15789 }, "Kdo ze třídy by mohl být ministrem školství?": { "Adam": 12.692309999999999, "Filip": 8.07692, "Miloš": 3.46154, "Matouš": 3.46154, "Marek": 2.30769 }, "Kdo ze třídy by mohl přežít apokalypsu?": { "Adam": 7.77778, "Filip": 6.66667, "Marek": 4.44444, "Michal": 2.22222, "Lenka": 2.22222, "Miloš": 2.22222, "Vítek": 2.22222, "Hanka": 2.22222 }, "Kdo ze třídy by se mohl stát influencerem?": { "Vendy O": 11.53846, "Karin": 9.23077, "Karel": 3.46154, "Hanka": 3.46154, "Eva": 2.30769 }, "Kdo je v naší třídě největší “drama queen” ?": { "Míša M": 13.75, "Matouš": 8.75, "Michal": 2.5, "Naty": 2.5, "Hanka": 2.5 }, "Jaký je nejoblíbenější alkohol?": { "Pivo": 11.73913, "Gin": 6.52174, "Jagger": 3.91304, "Víno": 2.6087, "Whisky": 2.6087, "Jack": 2.6087 }, "Kterého učitele byste pozvali na party?": { "Zágora": 9, "Koch": 7.5, "Trunkát": 7.5, "Šostok": 3, "Nováková": 3 }, "Kdo z naší třídy má největší šanci se stát prezidentem?": { "Matouš": 9.6, "Miloš": 7.2, "Filip": 4.8, "Petr": 3.6, "Marek": 2.4, "Magda K": 2.4 }, "Kdo je největší školní šprýmař?": { "Marek": 7.5, "Matouš": 6, "Trunkát": 6, "Zágora": 4.5, "Eva": 3, "Adam": 3 }, "Kdyby naše třída měla založit kapelu, kdo by byl její frontman?": { "Vendy Ch": 10.909089999999999, "Alča": 5.45455, "Matouš": 4.09091, "Miloš": 4.09091, "Karin": 2.72727, "Lenka": 2.72727 }, "Kdo byl nebo je největší Čech?": { "Tomáš Garrigue Masaryk": 11.66667, "Někdo ze spolužáků": 8.33333, "Karel IV": 5, "Jára Cimrman": 5 }, "Jmenujte jednoho apoštola.": { "Petr": 8.18182, "Matouš": 8.18182, "Marek": 8.18182, "Jan": 2.72727, "Tomáš": 2.72727 }}
+    const data = {
+  "Který z učitelů by mohl jít do politiky?": {
+    "Zágora": 9.6,
+    "Trunkát": 7.2,
+    "Krpec": 6,
+    "Bláhová": 2.4,
+    "Šostok": 2.4,
+    "Branný": 2.4
+  },
+  "Kdo z učitelů by mohl být celebritou?": {
+    "Bláhová": 12.27273,
+    "Branný": 8.18182,
+    "Řeháčková": 5.45455,
+    "Zágora": 4.09091
+  },
+  "V jakém předmětu se vždycky všichni modlí, aby se nezkoušelo?": {
+    "Biola": 12.85714,
+    "ZSV": 7.5,
+    "Fyzika": 7.5,
+    "Anlgičtina": 2.1428599999999998
+  },
+  "Jakou činnost dělají studenti o přestávce nejraději?": {
+    "Jí jídlo": 9.13043,
+    "Řvou": 5.21739,
+    "Používají mobil": 5.21739,
+    "Povídají si": 3.91304,
+    "Jdou na záchod": 3.91304,
+    "Učí se": 2.6087
+  },
+  "Kdyby učitele hráli ve filmu, kdo by byl záporák?": {
+    "Koch": 9.13043,
+    "Šelong": 7.82609,
+    "Zágora": 5.21739,
+    "Trunkát": 2.6087,
+    "Slawinská": 2.6087,
+    "Krpec": 2.6087
+  },
+  "Co si student nesmí vzít do školy?": {
+    "Zbraň": 11.53846,
+    "Tepláky": 8.07692,
+    "Drogy": 6.92308,
+    "Komicky velkou věc": 3.46154
+  },
+  "Jakou výmluvu použije student, když přijde pozdě do hodiny?": {
+    "Byl jsem u lékaře": 15,
+    "Zdržel jsem se na záchodě": 6.42857,
+    "Zdržela mě dopravní situace": 4.28571,
+    "Zdržel mě učitel": 2.1428599999999998,
+    "Zaspal jsem": 2.1428599999999998
+  },
+  "Kterého učitele byste si vybrali kdybyste měli ztroskotat na opuštěném ostrově?": {
+    "Krpec": 9.47368,
+    "Šostok": 7.8947400000000005,
+    "Zrubková": 4.73684,
+    "Šelong": 4.73684,
+    "Zágora": 3.15789
+  },
+  "Jak řeší studenti situaci, když je večer před testem a nic neumí? ": {
+    "Spí": 11.53846,
+    "Nespí, učí se": 8.07692,
+    "Nejdou do školy": 5.76923,
+    "Zítra ráno je taky den": 2.30769,
+    "Napíšou si tahák": 2.30769
+  },
+  "Jaký je váš nejoblíbenější žánr v kinematografii?": {
+    "Fantasy": 7.8947400000000005,
+    "Action": 6.31579,
+    "Komedie": 4.73684,
+    "Sci fi": 4.73684,
+    "Documentary": 3.15789,
+    "Horror": 3.15789
+  },
+  "Kdo ze třídy by mohl být ministrem školství?": {
+    "Adam": 12.692309999999999,
+    "Filip": 8.07692,
+    "Miloš": 3.46154,
+    "Matouš": 3.46154,
+    "Marek": 2.30769
+  },
+  "Kdo ze třídy by mohl přežít apokalypsu?": {
+    "Adam": 7.77778,
+    "Filip": 6.66667,
+    "Marek": 4.44444,
+    "Michal": 2.22222,
+    "Lenka": 2.22222,
+    "Miloš": 2.22222,
+    "Vítek": 2.22222,
+    "Hanka": 2.22222
+  },
+  "Kdo ze třídy by se mohl stát influencerem?": {
+    "Vendy O": 11.53846,
+    "Karin": 9.23077,
+    "Karel": 3.46154,
+    "Hanka": 3.46154,
+    "Eva": 2.30769
+  },
+  "Kdo je v naší třídě největší “drama queen” ?": {
+    "Míša M": 13.75,
+    "Matouš": 8.75,
+    "Michal": 2.5,
+    "Naty": 2.5,
+    "Hanka": 2.5
+  },
+  "Jaký je nejoblíbenější alkohol?": {
+    "Pivo": 11.73913,
+    "Gin": 6.52174,
+    "Whisky": 5.2174,
+    "Jagger": 3.91304,
+    "Víno": 2.6087
+  },
+  "Kterého učitele byste pozvali na party?": {
+    "Zágoru": 9,
+    "Kocha": 7.5,
+    "Trunkáta": 7.5,
+    "Šostoka": 3,
+    "Novákovou": 3
+  },
+  "Kdo z naší třídy má největší šanci se stát prezidentem?": {
+    "Matouš": 9.6,
+    "Miloš": 7.2,
+    "Filip": 4.8,
+    "Petr": 3.6,
+    "Marek": 2.4,
+    "Magda K": 2.4
+  },
+  "Kdo je největší školní šprýmař?": {
+    "Marek": 7.5,
+    "Matouš": 6,
+    "Trunkát": 6,
+    "Zágora": 4.5,
+    "Eva": 3,
+    "Adam": 3
+  },
+  "Kdyby naše třída měla založit kapelu, kdo by byl její frontman?": {
+    "Vendy Ch": 10.909089999999999,
+    "Alča": 5.45455,
+    "Matouš": 4.09091,
+    "Miloš": 4.09091,
+    "Karin": 2.72727,
+    "Lenka": 2.72727
+  },
+  "Kdo byl nebo je největší Čech?": {
+    "Tomáš Garrigue Masaryk": 11.66667,
+    "Václav Havel": 8.33333,
+    "Karel IV": 5,
+    "Jára Cimrman": 5
+  },
+  "Jmenujte jednoho apoštola.": {
+    "Petr": 8.18182,
+    "Matouš": 8.18182,
+    "Marek": 8.18182,
+    "Jan": 2.72727,
+    "Tomáš": 2.72727
+  }
+}
 
     let clipboard = 0;
     let Ascore = 0.01;
