@@ -337,8 +337,8 @@
     "Obrovskou věc": 3.46154
   },
   "Jakou výmluvu použije student, když přijde pozdě do hodiny?": {
-    "Byl jsem u lékaře": 15,
-    "Byl jsem na záchodě": 6.42857,
+    "Lékař": 15,
+    "Záchod": 6.42857,
     "Dopravní situace": 4.28571,
     "Zdržel mě učitel": 2.1428599999999998,
     "Zaspal jsem": 2.1428599999999998
@@ -441,9 +441,9 @@
     "Jára Cimrman": 5
   },
   "Jmenujte jednoho apoštola.": {
-    "Petr": 8.18182,
+    "Petr": 9.18182,
     "Matouš": 8.18182,
-    "Marek": 8.18182,
+    "Marek": 7.18182,
     "Jan": 2.72727,
     "Tomáš": 2.72727
   }
@@ -487,21 +487,25 @@
     }
     var currentSet = -1
 
-    function nextSet(direction) {
-        if (!didShow){
+    function nextSet(direction, force) {
+      if (!force){
+        console.log("checking")
+        var entriesa = Object.entries(data);
+        var [questiona, answersa] = entriesa[currentSet];
+        console.log("checking")
+        if (answersShown.length != Object.keys(answersa).length) return;
+      }
+            
 
-            answers.forEach((_, index) => revealAnswer(index));
-
-            didShow = true;
-        }else{
+          
+        
             //tempdidShow
-            didShow = false;
             currentSet += 1;
             const entries = Object.entries(data);
             const [question, answers] = entries[currentSet];
 
             loadList(question, answers)
-        }
+        
         
     }
 
@@ -552,7 +556,96 @@
       }
 
     }
-    nextSet(1);nextSet(1);
+    nextSet(1, true);
+
+    document.addEventListener('keydown', (event) => {
+            const key = event.key; // The key pressed
+            switch(key) {
+              case 'ArrowUp':
+                nextSet(1);
+                break;
+              case 'ArrowDown':
+                undo();
+                break;
+              case 'ArrowLeft':
+                addScore('A');
+                break;
+              case 'ArrowRight':
+                addScore('B');
+                break;
+              case 'w':
+                nextSet(1);
+                break;
+              case 's':
+                undo();
+                break;
+              case 'a':
+                addScore('A');
+                break;
+              case 'd':
+                addScore('B');
+                break;
+              case '1':
+                revealAnswer(0)
+                break;
+              case '2':
+                revealAnswer(1)
+                break;
+              case '3':
+                revealAnswer(2)
+                break;
+              case '4':
+                revealAnswer(3)
+                break;
+              case '5':
+                revealAnswer(4)
+                break;
+              case '6':
+                revealAnswer(5)
+                break;
+              case '7':
+                revealAnswer(6)
+                break;
+              case '8':
+                revealAnswer(7)
+                break;
+
+
+
+                //letters
+              case '+':
+                revealAnswer(0)
+                break;
+              case 'ě':
+                revealAnswer(1)
+                break;
+              case 'š':
+                revealAnswer(2)
+                break;
+              case 'č':
+                revealAnswer(3)
+                break;
+              case 'ř':
+                revealAnswer(4)
+                break;
+              case 'ž':
+                revealAnswer(5)
+                break;
+              case 'ý':
+                revealAnswer(6)
+                break;
+              case 'á':
+                revealAnswer(7)
+                break;
+              
+              case ' ':
+                toggleX();
+                break;
+              default:
+                break;
+            }
+            document.getElementById('output').innerText = `You pressed: ${key}`;
+    });
 
   </script>
 </body>
